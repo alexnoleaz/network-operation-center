@@ -2,16 +2,17 @@ import { CheckService } from '../application/features';
 import { CronService } from './cron';
 
 export class Server {
-  start() {
+  start(): void {
     console.log('Server started...');
 
     const cron = new CronService('*/5 * * * * *');
-    cron.start(() => {
+    cron.start(async () => {
       const url = 'https://google.com';
-      new CheckService(
+      const checkService = new CheckService(
         () => console.log(`${url} is ok`),
-        error => console.error(error)
-      ).execute(url);
+        (error) => console.error(error)
+      );
+      await checkService.execute(url);
     });
   }
 }

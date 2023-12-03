@@ -11,12 +11,12 @@ export class CronService implements ICronService {
     this.cronTime = cronTime;
   }
 
-  start(onTick: OnTick) {
+  start(onTick: OnTick): void {
     this.job = new CronJob(this.cronTime, onTick);
     this.job.start();
   }
 
-  stop() {
+  stop(): void {
     this.job?.stop();
   }
 }

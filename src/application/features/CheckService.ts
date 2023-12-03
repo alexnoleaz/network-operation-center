@@ -7,16 +7,14 @@ export class CheckService {
     private readonly errorCallback: ErrorCallback
   ) {}
 
-  async execute(url: string): Promise<boolean> {
+  async execute(url: string): Promise<void> {
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`Error on check service: ${url}`);
 
       this.successCallback();
-      return true;
     } catch (error) {
       this.errorCallback(`${error}`);
-      return false;
     }
   }
 }
