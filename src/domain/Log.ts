@@ -19,7 +19,7 @@ export class Log {
     return log;
   }
 
-  static toJSON(log: Log): string {
+  toJSON(log: Log): string {
     return `${JSON.stringify(log)}`;
   }
 }

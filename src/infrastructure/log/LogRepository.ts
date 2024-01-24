@@ -3,7 +3,7 @@ import {
   ILogRepository,
   Log,
   LogSeverityLevel,
-} from '../domain';
+} from '../../domain';
 
 export class LogRepository implements ILogRepository {
   private readonly _logDatasource: ILogDatasource;

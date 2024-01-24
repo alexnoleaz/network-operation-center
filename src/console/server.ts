@@ -1,6 +1,6 @@
 import { CheckService } from '../application/features';
-import { LogRepository } from '../infrastructure';
-import { LogFileSystemDatasource } from '../infrastructure/datasources';
+import { LogRepository } from '../infrastructure/logs';
+import { LogFileSystemDatasource } from '../infrastructure/logs/datasources';
 import { CronService } from './cron';
 
 export class Server {

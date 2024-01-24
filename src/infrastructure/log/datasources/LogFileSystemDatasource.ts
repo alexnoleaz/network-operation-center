@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { ILogDatasource, Log, LogSeverityLevel } from '../../domain';
+import { ILogDatasource, Log, LogSeverityLevel } from '../../../domain';
 
 export class LogFileSystemDatasource implements ILogDatasource {
   private readonly logsPath = 'logs/';
@@ -27,14 +27,11 @@ export class LogFileSystemDatasource implements ILogDatasource {
   }
 
   async save(log: Log): Promise<void> {
-    const data = `${Log.toJSON(log)}\n`;
+    const data = `${log.toJSON(log)}\n`;
 
-    if (log.level === LogSeverityLevel.LOW)
-      fs.appendFileSync(this.lowPath, data);
-    if (log.level === LogSeverityLevel.MEDIUM)
-      fs.appendFileSync(this.mediumPath, data);
-    if (log.level === LogSeverityLevel.HIGH)
-      fs.appendFileSync(this.highPath, data);
+    if (log.level === LogSeverityLevel.LOW) fs.appendFileSync(this.lowPath, data);
+    if (log.level === LogSeverityLevel.MEDIUM) fs.appendFileSync(this.mediumPath, data);
+    if (log.level === LogSeverityLevel.HIGH) fs.appendFileSync(this.highPath, data);
   }
 
   async getAll(logSeverityLevel: LogSeverityLevel): Promise<Log[]> {
